@@ -11,6 +11,10 @@ module and decide only *whether* to install and *where* (targets).
 | Source | Upstream | Selection |
 |--------|----------|-----------|
 | `caveman` | [JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman) (`skills/`) | all (22 skills) |
+| `anthropic` | [anthropics/skills](https://github.com/anthropics/skills) (`skills/`) | all (19 skills) |
+
+Some Anthropic skills (e.g. `docx`, `pdf`, `pptx`, `xlsx`) are source-available
+rather than open source; check each skill's `LICENSE.txt` upstream.
 
 ## Repository layout
 
@@ -156,8 +160,8 @@ To change what the hub ships by default, edit `catalog.nix`.
 1. Add a non-flake input in `flake.nix`:
 
    ```nix
-   anthropic-skills = {
-     url = "github:anthropics/skills";
+   example-skills = {
+     url = "github:example-org/example-skills";
      flake = false;
    };
    ```
@@ -165,17 +169,19 @@ To change what the hub ships by default, edit `catalog.nix`.
 2. Register it in `catalog.nix`:
 
    ```nix
-   sources.anthropic = {
-     path = inputs.anthropic-skills;
-     subdir = "skills";
-     idPrefix = "anthropic";   # optional; avoids ID collisions between sources
+   sources.example = {
+     path = inputs.example-skills;
+     subdir = "skills";   # folder containing <name>/SKILL.md dirs
    };
 
    # all skills from the source...
-   enableAll = [ "caveman" "anthropic" ];
-   # ...or individual skills
-   enable = [ "anthropic/frontend-design" ];
+   enableAll = [ "caveman" "anthropic" "example" ];
+   # ...or individual skills by name
+   enable = [ "some-skill" ];
    ```
+
+   Evaluation fails if two sources expose the same skill name; see the
+   opencode caveat below before reaching for `idPrefix`.
 
 3. Lock and verify:
 

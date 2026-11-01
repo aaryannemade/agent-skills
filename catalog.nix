@@ -8,10 +8,21 @@
       path = inputs.caveman;
       subdir = "skills";
     };
+
+    # No idPrefix: opencode only discovers skills/*/SKILL.md, and prefixed
+    # IDs would install into nested directories. Names don't collide with
+    # caveman's.
+    anthropic = {
+      path = inputs.anthropic-skills;
+      subdir = "skills";
+    };
   };
 
   # Source names whose discovered skills are all enabled.
-  enableAll = [ "caveman" ];
+  enableAll = [
+    "caveman"
+    "anthropic"
+  ];
 
   # Individual skill IDs to enable (from any source).
   enable = [ ];

@@ -13,6 +13,11 @@
       url = "github:JuliusBrussee/caveman";
       flake = false;
     };
+
+    anthropic-skills = {
+      url = "github:anthropics/skills";
+      flake = false;
+    };
   };
 
   outputs =
