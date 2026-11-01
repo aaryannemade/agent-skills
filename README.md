@@ -187,8 +187,10 @@ To change what the hub ships by default, edit `catalog.nix`.
 Caveat for opencode: it only discovers `skills/*/SKILL.md` (one level deep),
 and the skill `name` must match its directory. Prefixed IDs such as
 `anthropic/pdf` install into nested directories (`anthropic/pdf/`), which
-opencode will not find. For opencode, skip `idPrefix` and resolve name
-collisions with `skills.explicit.<name>.rename` instead.
+opencode will not find. For opencode, skip `idPrefix` and avoid selecting two
+skills with the same name. If you must rename one with
+`skills.explicit.<name>.rename`, also use `transform` to update the `name:`
+field in its `SKILL.md` frontmatter so it matches the new directory.
 
 ## Development
 
