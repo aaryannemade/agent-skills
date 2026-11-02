@@ -16,12 +16,19 @@
       path = inputs.anthropic-skills;
       subdir = "skills";
     };
+
+    # Playwright skill for using local playwright mcp servers
+    playwright = {
+      path = inputs.playwright-skill;
+      subdir = "skills";
+    };
   };
 
   # Source names whose discovered skills are all enabled.
   enableAll = [
     "caveman"
     "anthropic"
+    "playwright"
   ];
 
   # Individual skill IDs to enable (from any source).

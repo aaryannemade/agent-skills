@@ -18,6 +18,11 @@
       url = "github:anthropics/skills";
       flake = false;
     };
+
+    playwright-skill = {
+      url = "github:lackeyjb/playwright-skill";
+      flake = false;
+    };
   };
 
   outputs =
